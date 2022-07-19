@@ -1,0 +1,18 @@
+SELECT 
+  tripduration, starttime, stoptime,start_station_latitude as ss_lat,
+  start_station_longitude as ss_lont, end_station_latitude as es_lat,
+  end_station_longitude as es_long,bikeid, usertype, gender,
+ (2017 - birth_year) as age,
+  EXTRACT(hour from starttime) as hour_of_day,
+  EXTRACT(day from starttime) as day_of_month,
+  EXTRACT(dayofweek from starttime) as day_of_week,
+  EXTRACT(month from starttime) as month,
+Start_station_name, end_station_name
+FROM 
+`bigquery-public-data.new_york_citibike.citibike_trips` 
+WHERE
+  starttime between "2017-01-01" and "2018-01-01"
+ORDER BY
+  rand()
+LIMIT
+  3000
